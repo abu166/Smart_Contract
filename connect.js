@@ -1,16 +1,9 @@
 // Import Web3 library
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 
-// Initialize Web3
-(async () => {
-    try {
-        // Use Ganache RPC server
-        const web3 = new Web3('http://127.0.0.1:7545');
+const provider = new Web3.providers.HttpProvider('http://localhost:8545');
 
-        // Fetch accounts from the node
-        const accounts = await web3.eth.getAccounts();
-        console.log('Accounts:', accounts);
-    } catch (error) {
-        console.error('Error:', error.message);
-    }
-})();
+const web3 = new Web3(provider);
+
+web3.eth.getBlockNumber()
+    .then(() => console.log('done!'));
