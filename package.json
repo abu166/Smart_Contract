@@ -1,0 +1,23 @@
+{
+  "name": "smart_contract",
+  "version": "1.0.0",
+  "description": "",
+  "main": "connect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abu166/Smart_Contract.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abu166/Smart_Contract/issues"
+  },
+  "homepage": "https://github.com/abu166/Smart_Contract#readme",
+  "dependencies": {
+    "web3": "^4.16.0"
+  }
+}
