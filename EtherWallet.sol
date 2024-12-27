@@ -5,20 +5,20 @@ contract EtherWallet {
     address public owner;
 
     constructor() {
-        owner = msg.sender; // Set the deployer as the owner
+        owner = msg.sender;
     }
 
-    // Function to receive Ether
+    // Function to deposit Ether into the contract
     receive() external payable {}
 
-    // Check the contract balance
-    function getBalance() public view returns (uint256) {
-        return address(this).balance;
-    }
-
-    // Withdraw Ether (only owner can call)
-    function withdrawAll() public {
+    // Function to withdraw all Ether (only owner can withdraw)
+    function withdrawAll() external {
         require(msg.sender == owner, "Only owner can withdraw");
         payable(owner).transfer(address(this).balance);
+    }
+
+    // Function to check the balance of the contract
+    function getBalance() external view returns (uint256) {
+        return address(this).balance;
     }
 }
