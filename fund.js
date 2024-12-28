@@ -4,11 +4,11 @@ const {Web3} = require("web3");
 const web3 = new Web3("http://127.0.0.1:7545");
 
 // Contract address
-const contractAddress = "0x96121b9785f6e45fc0bf3032101b347c8aedf5c7"; // Replace with your contract address
+const contractAddress = "0x176a2056C3831F565fe2C845b01b53E7c04a0F07"; // Replace with your contract address
 
 async function fundContract() {
     const accounts = await web3.eth.getAccounts(); // Get Ganache accounts
-    const valueToSend = web3.utils.toWei("1", "ether"); // Amount to send (1 Ether)
+    const valueToSend = web3.utils.toWei("10", "ether"); // Amount to send (10 Ether)
 
     try {
         // Send transaction

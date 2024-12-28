@@ -1,4 +1,4 @@
-const {Web3} = require("web3");
+const { Web3 } = require("web3");
 
 // Connect to Ganache
 const web3 = new Web3("http://127.0.0.1:7545");
@@ -7,28 +7,19 @@ const web3 = new Web3("http://127.0.0.1:7545");
 const abi = [
 	{
 		"inputs": [],
-		"name": "deposit",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			}
-		],
-		"name": "withdraw",
+		"inputs": [],
+		"name": "withdrawAll",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
 	},
 	{
 		"inputs": [],
@@ -57,23 +48,30 @@ const abi = [
 		"type": "function"
 	}
 ];
-const contractAddress = "0x2D709c959024020365af83BfD4Db990021e24955";
+
+const contractAddress = "0x176a2056C3831F565fe2C845b01b53E7c04a0F07";
 
 // Create Contract instance
 const contract = new web3.eth.Contract(abi, contractAddress);
 
 // Interact with the contract
 async function interact() {
+
     const accounts = await web3.eth.getAccounts();
+    const owner = await contract.methods.owner().call();
+    console.log("Contract Owner:", owner);
+    console.log("Sender Account:", accounts[0]);
 
     // Check balance
     const balance = await contract.methods.getBalance().call();
     console.log("Contract Balance:", web3.utils.fromWei(balance, "ether"));
 
-    if (balance > 0) {
-        // Withdraw funds
+    if (BigInt(balance) > 0n) {
         try {
-            await contract.methods.withdrawAll().send({ from: accounts[0], gas: 3000000 });
+            await contract.methods.withdrawAll().send({
+                from: accounts[0], // owner account 
+                gas: 5000000
+            });
             console.log("Withdraw successful!");
         } catch (err) {
             console.error("Withdraw failed:", err.message);
@@ -84,3 +82,6 @@ async function interact() {
 }
 
 interact();
+
+// Contract Owner: 0xf52B5090200F8c6461D05D0dA1787cCeA82a43cB
+// Sender Account: 0xF53F6c8d9B885CEf99090FCEBE37910b729aBb5C
