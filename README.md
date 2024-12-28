@@ -46,7 +46,6 @@ Expected output: Transaction receipt showing:
 - Gas used
 
 ![The successful transaction](photos/transaction.png)
-![](photos/contract_call.png)
 
 ## Step 4: Interact with Contract (interact.js)
 
@@ -70,8 +69,18 @@ Expected output:
    - Contract creation transaction
    - Fund transfer transaction
    - Withdrawal transaction
+
+![](photos/functions.png)
+
 2. Verify account balances changed appropriately
+
+![](photos/balance.png)
+
 3. Confirm all transactions show successful status
+
+![](photos/contract_call.png)
+
+
 
 ## Common Issues and Solutions
 
