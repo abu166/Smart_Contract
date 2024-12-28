@@ -46,6 +46,7 @@ Expected output: Transaction receipt showing:
 - Gas used
 
 ![The successful transaction](photos/transaction.png)
+![](photos/contract_call.png)
 
 ## Step 4: Interact with Contract (interact.js)
 
